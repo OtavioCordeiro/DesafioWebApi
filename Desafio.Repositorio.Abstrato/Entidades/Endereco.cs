@@ -6,11 +6,12 @@ using System.Text;
 
 namespace Desafio.Repositorio.Abstrato.Entidades
 {
-    [Table("Endreco")]
+    [Table("Endereco")]
     public class Endereco
     {
         [Key]
         public int EnderecoId { get; set; }
+        [Range(1, 99999999, ErrorMessage = "O CEP deve ter até 8 digitos")]
         public int CEP { get; set; }
         public string Logradouro { get; set; }
         public int Numero { get; set; }

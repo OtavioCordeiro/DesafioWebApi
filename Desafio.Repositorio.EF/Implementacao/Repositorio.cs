@@ -1,4 +1,5 @@
 ﻿using Desafio.Repositorio.Abstrato.Interfaces;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -7,40 +8,40 @@ namespace Desafio.Repositorio.EF.Implementacao
 {
     public class Repositorio<T> : IRepositorio<T> where T : class
     {
-        public DesafioContexto Contexto { get; set; }
+        public DbContext Context { get; set; }
 
-        public Repositorio(DesafioContexto desafioContexto)
+        public Repositorio(DbContext context)
         {
-            Contexto = desafioContexto;
+            Context = context;
         }
 
-        protected void Save() => Contexto.SaveChanges();
+        protected void Save() => Context.SaveChanges();
 
         public void Add(T entity)
         {
-            Contexto.Add(entity);
+            Context.Add(entity);
             Save();
         }
 
         public void Delete(T entity)
         {
-            Contexto.Remove(entity);
+            Context.Remove(entity);
             Save();
         }
 
         public IEnumerable<T> Get()
         {
-            return Contexto.Set<T>();
+            return Context.Set<T>();
         }
 
         public T Get(int Id)
         {
-            return Contexto.Set<T>().Find(Id);
+            return Context.Set<T>().Find(Id);
         }
 
         public void Update(T entity)
         {
-            Contexto.Update(entity);
+            Context.Update(entity);
             Save();
         }
     }

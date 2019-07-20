@@ -1,22 +1,22 @@
 ﻿using Desafio.Repositorio.Abstrato.Entidades;
-using JetBrains.Annotations;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Desafio.Repositorio.EF
+namespace ConsoleAppTestes
 {
-    public class DesafioContexto : DbContext
+    public class DesafioDbContexto : DbContext
     {
-        public DesafioContexto(DbContextOptions<DesafioContexto> options) : base(options)
-        {
-        }
-
         public DbSet<Usuario> Usuarios { get; set; }
 
         public DbSet<Endereco> Enderecos { get; set; }
 
         public DbSet<Telefone> Telefones { get; set; }
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            optionsBuilder.UseSqlServer(@"Data Source = otavio\sqlexpress; Initial Catalog = DesafioDB; Integrated Security = True; Pooling = False");
+        }
     }
 }
