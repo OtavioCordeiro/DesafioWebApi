@@ -7,5 +7,6 @@ namespace Desafio.Repositorio.Abstrato.Interfaces
 {
     public interface IUsuarioRepositorio : IRepositorio<Usuario>
     {
+        IEnumerable<Usuario> GetFull();
     }
 }

@@ -8,6 +8,8 @@ namespace GeradorDeDadosAleatorio
 {
     public class UsuariosBuilder
     {
+        private static int telefoneId = 1;
+
         public static IEnumerable<Usuario> CreateUsuarios()
         {
             var usuarios = Builder<Usuario>.CreateListOfSize(5)
@@ -15,9 +17,6 @@ namespace GeradorDeDadosAleatorio
                                     .With(u => u.Endereco = Builder<Endereco>.CreateNew().Build())
                                     .With(u => u.Telefones = Builder<Telefone>.CreateListOfSize(2).Build())
                                     .Build();
-
-            //int enderecoId = 1;
-            int telefoneId = 1;
 
             foreach (var usuario in usuarios)
             {
@@ -29,14 +28,14 @@ namespace GeradorDeDadosAleatorio
                 {
                     telefone.TelefoneId = 0;
                     telefone.UsuarioId = 0;
-                    SetTelefoneType(telefoneId, telefone);
+                    SetTelefoneType(telefone);
                 }
             }
 
             return usuarios;
         }
 
-        private static void SetTelefoneType(int telefoneId, Telefone telefone)
+        private static void SetTelefoneType(Telefone telefone)
         {
             if ((telefoneId / 3) == 0)
             {

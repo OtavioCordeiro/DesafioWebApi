@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Desafio.API.DTOs;
 using Desafio.Repositorio.Abstrato.Interfaces;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -27,12 +28,26 @@ namespace Desafio.API.Controllers
             return new JsonResult(usuarios);
         }
 
+        [HttpGet("Tudo")]
+        public IActionResult GetFull()
+        {
+            var usuariosCompleto = Repositorio.GetFull();
+
+            return new JsonResult(usuariosCompleto);
+        }
+
         [HttpGet("{id}")]
         public IActionResult Get(int id)
         {
             var usuario = Repositorio.Get(id);
 
             return new JsonResult(usuario);
+        }
+
+        [HttpPost]
+        public IActionResult Create([FromBody] UsuarioDTO request)
+        {
+            return Ok();
         }
     }
 }
