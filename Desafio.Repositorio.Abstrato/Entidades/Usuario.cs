@@ -24,6 +24,6 @@ namespace Desafio.Repositorio.Abstrato.Entidades
 
         public Endereco Endereco { get; set; }
 
-        public List<Telefone> Telefones { get; set; }
+        public IList<Telefone> Telefones { get; set; }
     }
 }

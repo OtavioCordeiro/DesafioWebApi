@@ -1,4 +1,5 @@
 ﻿using Desafio.Repositorio.Abstrato.Entidades;
+using Desafio.Repositorio.Abstrato.Interfaces;
 using Desafio.Repositorio.EF;
 using Desafio.Repositorio.EF.Implementacao;
 using Microsoft.EntityFrameworkCore;
@@ -15,7 +16,7 @@ namespace ConsoleAppTestes
         {
             DesafioDbContexto contexto = new DesafioDbContexto();
 
-            UsuarioRepositorio usuarioRepositorio = new UsuarioRepositorio(contexto);
+            IUsuarioRepositorio usuarioRepositorio = new UsuarioRepositorio(contexto);
 
             Usuario usuario = new Usuario()
             {
